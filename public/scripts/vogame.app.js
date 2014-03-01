@@ -211,6 +211,7 @@
 
 		// Binding to key presses
 		$('body').keypress(function(e) {
+			e.preventDefault();
 			if (translator.translateCode(e.which) === $currentLetter.text()) {
 				stats.right++;
 				shiftLetter();
