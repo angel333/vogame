@@ -14,6 +14,9 @@
 	 */
 	var $sequence = $('#sequence');
 	var $hint = $('#hint');
+	var $selection = $('#selection');
+	var $selectionLoading = $('div.loading', $selection);
+	var $selectionList = $('ul', $selection);
 
 
 	/**
@@ -188,20 +191,53 @@
 
 
 	/**
+	 * Load a card set from uri
+	 */
+	function loadCardSet(url) {
+		$.ajax({
+			url: url,
+			dataType: 'json',
+		}).done(function(data) {
+			cards = data.cards;
+			loadCard(randomCard());
+		});
+	}
+
+
+	/**
+	 * Shows a menu where card sets are selected
+	 */
+	function showSelectionMenu() {
+		$selection.show();
+
+		$selectionLoading.show();
+		$selectionList.hide().empty();
+
+		$.ajax({
+			url: '/sets/',
+			dataType: 'json',
+		}).done(function(data) {
+			for (var i in data) {
+				$('<a/>')
+					.text(data[i])
+					.data('cardSetUrl', i)
+					.appendTo($('<li/>').appendTo($selectionList))
+					.attr('href', '#' + i);
+			}
+			$selectionLoading.hide();
+			$selectionList.show();
+		});
+	}
+
+
+	/**
 	 * On page load...
 	 */
 	$(function() {
 
 		$('#keyboard').keyboardVisualizer(targetLayout);
 
-		// Loading the cards
-		$.ajax({
-			url: "/data/hebrew-days-of-week.json",
-			dataType: "json",
-		}).done(function(data) {
-			cards = data;
-			loadCard(randomCard());
-		});
+		showSelectionMenu();
 
 		// Timer
 		setInterval(function() {
@@ -218,6 +254,12 @@
 			} else {
 				stats.wrong++;
 			}
+		});
+
+		// Selection window
+		$selection.on('click', 'a', function() {
+			loadCardSet('/sets/' + $(this).data('cardSetUrl'));
+			$selection.hide();
 		});
 
 	});
