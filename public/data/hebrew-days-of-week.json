@@ -1,9 +1,0 @@
-[
-	{ "answer": "יום ראשון", "description": "[yom rishon] sunday (first day)" },
-	{ "answer": "יום שני", "description": "[yom sheni] monday (second day)" },
-	{ "answer": "יום שלישי", "description": "[yom shlishi] tuesday (third day)" },
-	{ "answer": "יום רביעי", "description": "[yom revi'i] wednesday (forth day)" },
-	{ "answer": "יום חמישי", "description": "[yom chamishi] thursday (fifth day)" },
-	{ "answer": "יום שישי", "description": "[yom shishi] friday (sixth day)" },
-	{ "answer": "יום שבת", "description": "[yom shabat] saturday (shabbat)" }
-]
