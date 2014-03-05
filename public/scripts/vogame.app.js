@@ -237,7 +237,11 @@
 
 		$('#keyboard').keyboardVisualizer(targetLayout);
 
-		showSelectionMenu();
+		if (window.location.hash) {
+			loadCardSet('/sets/' + window.location.hash.substr(1));
+		} else {
+			showSelectionMenu();
+		}
 
 		// Timer
 		setInterval(function() {
