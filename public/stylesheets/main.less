@@ -11,7 +11,7 @@ body {
 	right: 0;
 	bottom: 0;
 	margin: auto;
-	height: 200px; // TODO
+	height: 600px; // TODO
 
 	>div { margin: 1em; }
 }
@@ -63,15 +63,50 @@ div#keyboard>div.row>div.key {
 
 // SEQUENCE >>>
 div#sequence {
-	@current: white;
-	@done: rgb(0, 241, 0);
-	@remaining: rgb(158, 158, 158);
+	@currentLetterColor: #0085A7;
+	@correctLetterColor: #7AB422;
+	@remainingLetterColor: #4B4B4B;
+	@width: 320px;
+	@height: 200px;
+	@space: 30px;
 
-	span {
-		font-size: 4em;
-		color: @remaining;
-		&.current { color: @current; }
-		&.done { color: @done; }
+	overflow: hidden;
+	height: @height + 40; // <v 20px shadow
+	padding-top: 20px;
+
+	div#sequence-focus {
+		width: @width;
+		height: @height;
+		position: relative;
+		margin: auto;
+
+		box-shadow: 0 0 20px 7px #0000DF;
+	}
+
+	div.card {
+		width: @width;
+		height: @height;
+		position: absolute;
+
+		line-height: @height;
+		color: black;
+		background: rgb(240,240,240);
+		border-radius: 5px;
+		transition: 400ms;
+		transition-timing-function: ease;
+
+		&.active { opacity: 1; }
+		&.invisible { opacity: 0 !important; }
+		&.prev, &.next { opacity: .5; }
+		&.prev { margin-left: -(@width + @space); }
+		&.next { margin-left: @width + @space; }
+
+		span {
+			font-size: 4em;
+			color: @remainingLetterColor;
+			&.current { color: @currentLetterColor; }
+			&.done { color: @correctLetterColor; }
+		}
 	}
 }
 // <<< SEQUENCE
@@ -121,6 +156,7 @@ div#statusbar {
 // >>> SELECTION >>>
 div#selection {
 	display: none; // by default
+	z-index: 1;
 
 	position: absolute;
 	left: 0;

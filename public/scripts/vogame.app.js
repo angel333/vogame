@@ -13,6 +13,7 @@
 	 * HTML tag definitions
 	 */
 	var $sequence = $('#sequence');
+	var $sequenceFocus = $('#sequence-focus');
 	var $hint = $('#hint');
 	var $selection = $('#selection');
 	var $selectionLoading = $('div.loading', $selection);
@@ -120,24 +121,46 @@
 	 * @param {Array} card Card to load
 	 */
 	function loadCard(card) {
-		var i;
+		var $card;
 
 		function _$createLetter(letter) {
 			return $('<span>').text(letter);
 		}
 
-		$sequence.empty(); // clean
+		// .prev -> .invisible -> cleanup after a while
+		$('.prev', $sequenceFocus)
+			.addClass('invisible')
+			.delay(1000) // >= css transition delay
+			.queue(function() {
+				$(this).remove();
+			});
 
-		// create all letters
-		for (i = 0; i < card.answer.length; i++) {
-			_$createLetter(card.answer[i]).appendTo($sequence);
+		// .active -> .prev
+		$('.active', $sequenceFocus)
+			.removeClass('active')
+			.addClass('prev');
+
+		// new card is .next at first
+		$card = $('<div class="card next"/>')
+			.appendTo($sequenceFocus);
+
+		// but quickly becomes .active
+		window.setTimeout(function() {
+			$card
+				.removeClass('next')
+				.addClass('active');
+		}, 0);
+
+		// letters
+		for (var i = 0; i < card.answer.length; i++) {
+			_$createLetter(card.answer[i]).appendTo($card);
 		}
+		$currentLetter = $('span', $card)
+			.first()
+			.addClass('current');
 
 		// .. and fill the hint
 		$hint.text(card.description);
-
-		$currentLetter = $('span', $sequence).first();
-		$currentLetter.addClass('current');
 	}
 
 
@@ -145,16 +168,16 @@
 	 * Moves to the next letter in sequence
 	 */
 	function shiftLetter() {
+		$currentLetter
+			.removeClass('current')
+			.addClass('done');
+
 		if (0 === $currentLetter.next().length) {
 			loadCard(randomCard());
-			return;
-		}
-
-		$currentLetter = $currentLetter
-			.removeClass('current')
-			.addClass('done')
-			.next()
+		} else {
+			$currentLetter = $currentLetter.next()
 				.addClass('current');
+		}
 	}
 
 
