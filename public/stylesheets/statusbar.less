@@ -1,0 +1,26 @@
+div#statusbar {
+	display: inline-block;
+	width: 250px;
+	padding: 5px;
+
+	background: linear-gradient(rgb(27, 27, 228), rgb(0, 0, 99));
+	border: 1px solid blue;
+	border-radius: 5px;
+
+	span {
+		margin: 0 0.5em;
+		font-weight: bold;
+		font-family: arial;
+		font-size: .9em;
+
+		&.time:before { content: '▶ '; }
+		&.score:before { content: '♥ '; }
+		&.right:before { content: '✓ '; }
+		&.wrong:before { content: '✗ '; }
+
+		&.time { color: rgb(128, 128, 255); }
+		&.score { color: rgb(235, 255, 0); }
+		&.right { color: rgb(43, 241, 43); }
+		&.wrong { color: rgb(255, 77, 77); }
+	}
+}
