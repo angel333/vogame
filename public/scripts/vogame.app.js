@@ -258,7 +258,7 @@
 	 */
 	$(function() {
 
-		$('#keyboard').keyboardVisualizer(targetLayout);
+		//$('#keyboard').keyboardVisualizer(targetLayout);
 
 		if (window.location.hash) {
 			loadCardSet('/sets/' + window.location.hash.substr(1));
