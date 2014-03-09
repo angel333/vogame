@@ -1,11 +1,9 @@
 div#statusbar {
-	display: inline-block;
-	width: 250px;
-	padding: 5px;
+	text-align: center;
+	width: 320px;
+	padding: 5px 0;
 
-	background: linear-gradient(rgb(27, 27, 228), rgb(0, 0, 99));
-	border: 1px solid blue;
-	border-radius: 5px;
+	background: gray;
 
 	span {
 		margin: 0 0.5em;
@@ -17,10 +15,5 @@ div#statusbar {
 		&.score:before { content: '♥ '; }
 		&.right:before { content: '✓ '; }
 		&.wrong:before { content: '✗ '; }
-
-		&.time { color: rgb(128, 128, 255); }
-		&.score { color: rgb(235, 255, 0); }
-		&.right { color: rgb(43, 241, 43); }
-		&.wrong { color: rgb(255, 77, 77); }
 	}
 }

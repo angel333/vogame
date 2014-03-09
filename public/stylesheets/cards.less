@@ -1,53 +1,40 @@
 div#sequence {
-	@currentLetterColor: #0085A7;
-	@correctLetterColor: #7AB422;
-	@remainingLetterColor: #4B4B4B;
 	@width: 320px;
 	@height: 200px;
-	@space: 30px;
+	@space: 5%;
 
 	overflow: hidden;
-	height: @height + 40; // <v 20px shadow
-	padding-top: 20px;
 
 	div#sequence-focus {
 		width: @width;
 		height: @height;
+		margin: 0 auto;
 		position: relative;
-		margin: auto;
-
-		box-shadow: 0 0 20px 7px #0000DF;
 	}
 
 	div.card {
-		width: @width;
-		height: @height;
+		width: inherit;
+		height: inherit;
 		position: absolute;
 
-		line-height: @height;
-		color: black;
-		background: rgb(240,240,240);
-		border-radius: 5px;
-		transition: 400ms;
-		transition-timing-function: ease;
+		background: white;
+
+		transition: 100ms;
+		transition-timing-function: linear;
+
+		text-align: center;
 
 		&.active { opacity: 1; }
 		&.invisible { opacity: 0 !important; }
 		&.prev, &.next { opacity: .5; }
-		&.prev { margin-left: -(@width + @space); }
-		&.next { margin-left: @width + @space; }
+		&.prev { margin-left: -(100% + @space); }
+		&.next { margin-left: 100% + @space; }
 
 		span {
 			font-size: 4em;
-			color: @remainingLetterColor;
-			&.current { color: @currentLetterColor; }
-			&.done { color: @correctLetterColor; }
+			color: gray;
+			&.current { color: blue; }
+			&.done { color: black; }
 		}
 	}
-}
-
-
-div#hint {
-	font-family: arial;
-	font-size: .9em;
 }

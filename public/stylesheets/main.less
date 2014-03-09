@@ -1,9 +1,14 @@
 @import 'desktop.less';
-@import 'mobile.less';
 
 @import 'keyboard.less';
 @import 'cards.less';
 @import 'selection.less';
 @import 'statusbar.less';
 
+@media screen and (max-width: 480px) {
+	//@import 'mobile.less';
+}
+
 @import 'themes/default.less';
+
+div#hint { display: none; } // deprecated
