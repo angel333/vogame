@@ -14,7 +14,6 @@
 	 */
 	var $sequence = $('#sequence');
 	var $sequenceFocus = $('#sequence-focus');
-	var $hint = $('#hint');
 	var $selection = $('#selection');
 	var $selectionLoading = $('div.loading', $selection);
 	var $selectionList = $('ul', $selection);
@@ -152,15 +151,18 @@
 		}, 0);
 
 		// letters
+		var $front = $('<p class="front"/>').appendTo($card);
 		for (var i = 0; i < card.answer.length; i++) {
-			_$createLetter(card.answer[i]).appendTo($card);
+			_$createLetter(card.answer[i]).appendTo($front);
 		}
-		$currentLetter = $('span', $card)
+		$currentLetter = $('span', $front)
 			.first()
 			.addClass('current');
 
 		// .. and fill the hint
-		$hint.text(card.description);
+		$('<p class="hint"/>')
+			.text(card.description)
+			.appendTo($card);
 	}
 
 
