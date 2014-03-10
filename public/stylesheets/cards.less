@@ -1,0 +1,44 @@
+div#sequence {
+	@width: 320px;
+	@height: 200px;
+	@space: 5%;
+
+	overflow: hidden;
+
+	div#sequence-focus {
+		width: @width;
+		height: @height;
+		margin: 0 auto;
+		position: relative;
+	}
+
+	div.card {
+		width: inherit;
+		height: inherit;
+		position: absolute;
+
+		background: white;
+
+		transition: 100ms;
+		transition-timing-function: linear;
+
+		text-align: center;
+
+		&.active { opacity: 1; }
+		&.invisible { opacity: 0 !important; }
+		&.prev, &.next { opacity: .5; }
+		&.prev { margin-left: -(100% + @space); }
+		&.next { margin-left: 100% + @space; }
+
+		span {
+			font-size: 4em;
+			color: gray;
+			&.current { color: blue; }
+			&.done { color: black; }
+		}
+
+		p.hint {
+			font-size: 1.2em;
+		}
+	}
+}

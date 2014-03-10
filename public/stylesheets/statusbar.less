@@ -1,0 +1,19 @@
+div#statusbar {
+	text-align: center;
+	width: 320px;
+	padding: 5px 0;
+
+	background: gray;
+
+	span {
+		margin: 0 0.5em;
+		font-weight: bold;
+		font-family: arial;
+		font-size: .9em;
+
+		&.time:before { content: '▶ '; }
+		&.score:before { content: '♥ '; }
+		&.right:before { content: '✓ '; }
+		&.wrong:before { content: '✗ '; }
+	}
+}
