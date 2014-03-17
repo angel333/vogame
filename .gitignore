@@ -2,3 +2,4 @@ node_modules
 npm-debug.log
 
 public/scripts/vendor.min.js
+public/scripts/vendor/*
