@@ -27,8 +27,8 @@ div#sequence {
 		&.active { opacity: 1; }
 		&.invisible { opacity: 0 !important; }
 		&.prev, &.next { opacity: .5; }
-		&.prev { margin-left: -(100% + @space); }
-		&.next { margin-left: 100% + @space; }
+		&.prev { -webkit-transform: translateX(0 - 30% - @space) scale(.8); }
+		&.next { -webkit-transform: translateX(30% + @space) scale(.8); }
 
 		span {
 			font-size: 4em;
